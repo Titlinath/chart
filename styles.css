@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+h2, h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.chart-container {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.table-container {
+    margin-bottom: 40px;
+}
+
+.table-container table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+.table-container th, .table-container td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+}
+
+.table-container th {
+    background-color: #f2f2f2;
+}
+
