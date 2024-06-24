@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Data for charts and tables (replace with your actual data)
+    // Data for charts and tables
     var roadBlockData = {
         labels: ['Maharashtra', 'Delhi', 'Tamil Nadu', 'Karnataka', 'Gujarat'],
         datasets: [{
@@ -114,154 +114,159 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // Initialize charts and tables
-    var ctxRoadBlock = document.getElementById('barChart').getContext('2d');
-    var barChart = new Chart(ctxRoadBlock, {
+    var ctxBar = document.getElementById('barChart').getContext('2d');
+    var ctxDoughnut = document.getElementById('doughnutChart').getContext('2d');
+    var ctxPolarArea = document.getElementById('polarAreaChart').getContext('2d');
+    var ctxBubble = document.getElementById('bubbleChart').getContext('2d');
+    var ctxScatter = document.getElementById('scatterChart').getContext('2d');
+
+    var barChart = new Chart(ctxBar, {
         type: 'bar',
         data: roadBlockData,
         options: {
             responsive: true,
-            legend: {
-                position: 'top',
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.parsed.y + '%';
+                        }
+                    }
+                }
             },
-            title: {
-                display: true,
-                text: 'Road Blocks in Various States (%)'
+            hover: {
+                animationDuration: 400
             },
             scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        callback: function(value) { return value + "%" }
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var doughnutChart = new Chart(ctxDoughnut, {
+        type: 'doughnut',
+        data: healthImpactData,
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.parsed + '%';
+                        }
                     }
-                }]
+                }
+            },
+            hover: {
+                animationDuration: 400
+            }
+        }
+    });
+
+    var polarAreaChart = new Chart(ctxPolarArea, {
+        type: 'polarArea',
+        data: humanDiseasesData,
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.parsed + '%';
+                        }
+                    }
+                }
+            },
+            hover: {
+                animationDuration: 400
+            }
+        }
+    });
+
+    var bubbleChart = new Chart(ctxBubble, {
+        type: 'bubble',
+        data: animalDiseasesData,
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.raw.y + '%';
+                        }
+                    }
+                }
+            },
+            hover: {
+                animationDuration: 400
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    var scatterChart = new Chart(ctxScatter, {
+        type: 'scatter',
+        data: animalImpactData,
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        label: function(context) {
+                            return context.label + ': ' + context.raw.y + '%';
+                        }
+                    }
+                }
+            },
+            hover: {
+                animationDuration: 400
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
             }
         }
     });
 
     generateTable(document.getElementById('roadBlockTable'), roadBlockData);
-
-    var ctxHealthImpact = document.getElementById('doughnutChart').getContext('2d');
-    var doughnutChart = new Chart(ctxHealthImpact, {
-        type: 'doughnut',
-        data: healthImpactData,
-        options: {
-            responsive: true,
-            legend: {
-                position: 'bottom',
-            },
-            title: {
-                display: true,
-                text: 'Health Impacts and Percentages (%)'
-            }
-        }
-    });
-
     generateTable(document.getElementById('healthImpactTable'), healthImpactData);
-
-    var ctxHumanDiseases = document.getElementById('polarAreaChart').getContext('2d');
-    var polarAreaChart = new Chart(ctxHumanDiseases, {
-        type: 'polarArea',
-        data: humanDiseasesData,
-        options: {
-            responsive: true,
-            legend: {
-                position: 'right',
-            },
-            title: {
-                display: true,
-                text: 'Human Diseases by States (%)'
-            }
-        }
-    });
-
     generateTable(document.getElementById('humanDiseasesTable'), humanDiseasesData);
-
-    var ctxAnimalDiseases = document.getElementById('bubbleChart').getContext('2d');
-    var bubbleChart = new Chart(ctxAnimalDiseases, {
-        type: 'bubble',
-        data: {
-            datasets: [{
-                label: 'Local Animal Diseases',
-                backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-                data: [
-                    { x: 10, y: 20, r: 5 },
-                    { x: 15, y: 10, r: 8 },
-                    { x: 7, y: 25, r: 6 },
-                    { x: 30, y: 15, r: 7 },
-                    { x: 25, y: 18, r: 9 }
-                ]
-            }]
-        },
-        options: {
-            responsive: true,
-            legend: {
-                position: 'bottom',
-            },
-            title: {
-                display: true,
-                text: 'Local Animal Diseases'
-            },
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
-        }
-    });
-
     generateTable(document.getElementById('animalDiseasesTable'), animalDiseasesData);
+    generateTable(document.getElementById('animalImpactTable'), animalImpactData);
 
-    var ctxAnimalImpact = document.getElementById('scatterChart').getContext('2d');
-    var scatterChart = new Chart(ctxAnimalImpact, {
-        type: 'scatter',
-        data: {
-            datasets: [{
-                label: 'Animal Impact (%)',
-                backgroundColor: 'rgba(255, 99, 132, 0.6)',
-                borderColor: 'rgba(255, 99, 132, 1)',
-                borderWidth: 1,
-                data: [
-                    { x: 10, y: 20 },
-                    { x: 15, y: 10 },
-                    { x: 7, y: 25 },
-                    { x: 30, y: 15 },
-                    { x: 25, y: 18 }
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'bottom',
-                },
-                title: {
-                    display: true,
-                    text: 'Animal Impacts by States (%)'
-                },
-                scales: {
-                    xAxes: [{
-                        type: 'linear',
-                        position: 'bottom'
-                    }]
-                }
-            }
-        });
-    
-        generateTable(document.getElementById('animalImpactTable'), animalImpactData);
+   // Add sortable table functionality
+document.querySelectorAll('th').forEach(header => {
+    header.addEventListener('click', function() {
+        const table = header.parentElement.parentElement.parentElement;
+        const index = Array.from(header.parentElement.children).indexOf(header);
+        sortTable(table, index);
     });
+});
+
+// Sort table function
+function sortTable(table, columnIndex) {
+    const rows = Array.from(table.querySelectorAll('tr:nth-child(n+2)')); // Skip header row
+    const isNumeric = !isNaN(rows[0].querySelectorAll('td')[columnIndex].innerText);
     
-    function generateTable(table, data) {
-        var tableHead = '<tr><th>State</th><th>Percentage (%)</th></tr>';
-        var tableBody = '';
-    
-        for (var i = 0; i < data.labels.length; i++) {
-            tableBody += '<tr><td>' + data.labels[i] + '</td><td>' + data.datasets[0].data[i] + '</td></tr>';
+    rows.sort((rowA, rowB) => {
+        const cellA = rowA.querySelectorAll('td')[columnIndex].innerText;
+        const cellB = rowB.querySelectorAll('td')[columnIndex].innerText;
+
+        if (isNumeric) {
+            return parseFloat(cellA) - parseFloat(cellB);
+        } else {
+            return cellA.localeCompare(cellB);
         }
-    
-        table.innerHTML = tableHead + tableBody;
-    }
-    
+    });
+
+    rows.forEach(row => table.appendChild(row));
+}
+
+});
