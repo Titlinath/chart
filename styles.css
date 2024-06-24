@@ -1,13 +1,19 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
-    background-color: #f0f0f0;
+    background: url('https://i.pinimg.com/564x/04/f3/24/04f32445d0a0938acfac8e7d08a1afba.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
 }
 
 .container {
     width: 80%;
     margin: auto;
     padding: 20px;
+    background: rgba(0, 0, 0, 0.7); /* Adds a semi-transparent background to the container */
+    border-radius: 10px;
 }
 
 h2, h3 {
@@ -28,15 +34,16 @@ h2, h3 {
     width: 100%;
     border-collapse: collapse;
     border: 1px solid #ccc;
+    background: rgba(255, 255, 255, 0.8); /* Adds a semi-transparent background to the table */
 }
 
 .table-container th, .table-container td {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: center;
+    color: #000; /* Changes text color to black for better readability */
 }
 
 .table-container th {
-    background-color: #f2f2f2;
+    background-color: rgba(240, 240, 240, 0.8);
 }
-
