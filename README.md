@@ -54,9 +54,6 @@ This project is my first attempt at creating and documenting charts. It showcase
 
 ## Vercel Deployment Details
 
-- **Status:** Ready
-- **Environment:** Production
-- **Duration:** 4s (26 days ago)
 - **Domains:**
   - [chart-git-main-titli-naths-projects.vercel.app](https://chart-git-main-titli-naths-projects.vercel.app)
   - [chart-qamf0dr76-titli-naths-projects.vercel.app](https://chart-qamf0dr76-titli-naths-projects.vercel.app)
