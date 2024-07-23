@@ -6,8 +6,7 @@
 This project is my first attempt at creating and documenting charts. It showcases my genuine interest in data visualization and aims to provide insightful and interactive charts using basic web technologies.
 
 ## Preview of Our Charts ->
-![chart_preview]("![Screenshot 2024-07-23 120547](https://github.com/user-attachments/assets/3a30f145-76b9-4975-b949-a5b252dba2fa)
-")
+![chart](https://github.com/Titlinath/chart/blob/main/chart.png)
 
 ## Features
 
